@@ -19,6 +19,7 @@ jobs:
           for s in *; do zip -qrX "../dist/$s.skill" "$s"; done
           mkdir -p ../stage/the-triad
           cp -r devcom5 synk182 solid8 ../stage/the-triad/
+          cp ../bundles/the-triad/README.md ../stage/the-triad/
           cd ../stage && zip -qrX ../dist/the-triad.zip the-triad
           ls -l ../dist
       - name: Publish
