@@ -1,0 +1,26 @@
+# Publishes a release when a version tag is pushed: each skill as <name>.skill and The Triad as the-triad.zip,
+# so the downloads can be counted.
+name: release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package
+        run: |
+          mkdir -p dist
+          cd skills
+          for s in *; do zip -qrX "../dist/$s.skill" "$s"; done
+          mkdir -p ../stage/the-triad
+          cp -r devcom5 synk182 solid8 ../stage/the-triad/
+          cd ../stage && zip -qrX ../dist/the-triad.zip the-triad
+          ls -l ../dist
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --title "MK1 skills $GITHUB_REF_NAME" --notes "Released copies. Get them at https://mk1made.us"

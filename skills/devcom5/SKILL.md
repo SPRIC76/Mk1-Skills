@@ -1,0 +1,292 @@
+---
+name: devcom5
+description: >-
+  DevCom5 (Logger): project documentation and developer communications.
+  Reports a project's state, trajectory and gaps; writes and maintains a
+  five-document docs/ system (INDEX, ARCHITECTURE, USER_EXPERIENCE, PLANNING,
+  HISTORY); and co-authors a project's proposals, specs, decision docs, status
+  reports, updates on progress, plans and problems, newsletters, FAQs and
+  incident reports. Use when the user says devcom5, dc5 or logger; asks to
+  document a project, update a README, changelog or docs, catch them up, or
+  say where things stand or where we were; is onboarding to a codebase,
+  resuming after a break, or preparing a handover; or asks for one of those
+  about a project - and proactively when a project's docs are missing or
+  stale. Keeps its own state in the project's docs/PULSE.json. Not for office
+  documents like a contract or slide deck (a document skill), proving a change
+  works (a verification tool), the user's knowledge outside a project (a
+  knowledge-search skill), or rendering diagrams (a diagramming skill).
+license: Freeware
+metadata:
+  version: "1.3"
+  updated: "2026-09-30"
+---
+
+# DevCom5 — Developer Communications · 5
+ Also known as **Logger**. 
+> *Far from the woods and a lager, look farther. One might never glimpse a forest through the trees, never stood tall, aye, they'd bend at their knees*
+
+**Three modes. One system. Adaptive depth that processes, and maintains overwatch.**
+
+What the project knows about itself.
+
+>**Cartographer** — Read/comprehend. Diagnose state, trajectory, gaps.
+>**Architect** — Write/maintain the 5-doc system calibrated to project needs.
+>**Scribe** — Co-author documents, proposals, specs, and internal comms through structured workflows with iterative refinement.
+
+**Proactive:** when you notice a project's docs are missing or stale, offer a Pulse check before it costs anyone a lapse.
+
+Works in any agent that reads a `SKILL.md`, on its own; it needs no script.
+
+---
+
+## The Digest System
+
+The tracking system doesn't passively check a heartbeat — it actively
+processes. Each interaction is a **digest cycle**: Intake → Breakdown →
+Absorb → Eliminate. If nothing changed, it says so fast and moves on.
+If everything changed, it escalates and digs deep.
+
+Tracked via `docs/PULSE.json`. Read first, write last, every interaction.
+
+```json
+{
+  "project": "Name",
+  "pulse_version": "3.0",
+  "classification": { "domain": "software", "maturity": "mvp", "complexity": "solo" },
+  "heartbeat": {
+    "last_seen": "ISO-8601-ET", "last_depth": "standard",
+    "last_mode": "cartographer|architect|scribe",
+    "last_context": "Brief summary", "session_count": 5
+  },
+  "health": {
+    "docs_exist": [], "docs_missing": [], "docs_stale": [],
+    "drift_flags": [], "last_audit": "ISO-8601-ET"
+  },
+  "cross_skill": { "pending_signals": [] },
+  "digest_history": [
+    {
+      "timestamp": "ISO-8601-ET", "depth_requested": "deep",
+      "depth_actual": "standard", "reason": "mid-scan downshift: no changes detected",
+      "summary": "Brief findings", "recommended_next": "action"
+    }
+  ]
+}
+```
+
+DevCom5 owns every key outside `cross_skill`. `cross_skill` is where other tools that share the file keep their keys (see Optional integration): keep every key there you do not recognize, and write only DevCom5's own signals. With no other tool, it stays as above.
+
+### On Entry
+1. Read PULSE.json (missing = first encounter → Deep; unparseable → report it, rebuild the baseline, keep the broken file as `PULSE.corrupt.json`)
+2. Calculate depth via three-tier system (below)
+3. Display status: `📡 DevCom5: [staleness] | Depth: [selected] | Docs: [n/5] | [flags]`
+
+### On Exit
+1. Update heartbeat + digest_history (max 10 entries, prune oldest)
+2. Update health assessment
+3. Write DevCom5's own signals, if other tools share the file
+4. Display: `📡 Updated: [context] | Next: [recommendation]`
+
+---
+
+## Three-Tier Depth System
+
+Depth is not static. It's determined, then **adjusted mid-operation**.
+
+### Tier 1: Staleness Gauge (initial selection)
+
+| Staleness | Default Depth |
+|-----------|---------------|
+| < 24h | **Pulse** — PULSE.json + tree (2 levels) + diff vs last digest |
+| 1–7 days | **Standard** — + READMEs, configs, existing docs |
+| 1–4 weeks | **Thorough** — + entry points, modules, tests. See [references/AUDIT_PROTOCOL.md](references/AUDIT_PROTOCOL.md) |
+| > 1 month / new | **Deep** — + secondary source, staging and archive folders, full drift. See [references/AUDIT_PROTOCOL.md](references/AUDIT_PROTOCOL.md) |
+
+### Tier 2: Adaptive Mid-Scan (dynamic adjustment)
+
+During any scan, the system evaluates whether its current depth is appropriate:
+
+**Auto-Downshift** (save tokens when nothing's happening):
+- Deep scan finds <5% file changes since last digest → downshift to Standard
+- Thorough scan finds zero drift flags → downshift to Pulse-level report
+- 3+ consecutive digests with "no significant changes" → suggest skipping to action
+
+**Auto-Upshift** (catch problems before they compound):
+- Pulse scan finds new files not in last snapshot → upshift to Standard
+- Standard scan finds doc-reality drift → upshift to Thorough
+- Any scan where file count changed >20% → upshift to Deep
+- Missing PULSE.json fields or corruption → upshift to Deep (rebuild baseline)
+
+**Always report shifts:**
+`📡 Depth adjusted: Deep → Standard (only 2 files changed since last digest)`
+
+### Tier 3: Signal Modifiers (override upward only)
+
+| Signal | Effect |
+|--------|--------|
+| `drift_flags` not empty | ≥ Standard even if < 24h |
+| Signals other tools left in `cross_skill` | See Optional integration; with none, this tier does nothing |
+
+---
+
+## Adaptive Engine
+
+Classify once per project, reuse from PULSE. Reclassify on visible stage change.
+
+| Axis | Values | Effect |
+|------|--------|--------|
+| **Domain** | software · creative · research · hybrid | Doc priority + vocabulary |
+| **Maturity** | seed · mvp · production · legacy | Aggressiveness of documentation |
+| **Complexity** | solo · small_team · distributed | Depth and audience assumptions |
+
+Software → ARCHITECTURE heavy. Creative → USER_EXPERIENCE heavy. Research → PLANNING heavy.
+Seed → PLANNING + INDEX. Production → full. Legacy → aggressive capture.
+Solo → concise. Distributed → zero assumptions.
+
+**A project that already has a documentation system** (numbered continuity files, an ADR folder, a docs site): map the five roles onto what exists and maintain those files. Never create a parallel `docs/` set beside a working one — that is sprawl.
+
+---
+
+## Mode 1: Cartographer
+
+Produce a **Project Audit Report** adapted to depth and classification.
+
+### Full Audit (Standard+)
+```
+## Project Audit: [Name]
+Classification: [D/M/C] | Depth: [level] (adjusted: [if changed]) | Sessions: [n]
+
+### 1. Identity — one paragraph
+### 2. Structure Map — interpreted directory overview
+### 3. Current State — working / broken / in-progress / blocked
+### 4. Doc Health — exist / missing / stale / drift
+### 5. Trajectory — evidence + inference (marked which is which)
+### 6. Actions — prioritized: (impact × urgency) / effort
+```
+
+### Pulse Check (< 24h, no changes)
+3-5 line status. No full report.
+
+### Comprehension Techniques
+Entry-point tracing → Config-first → Doc-reality cross-check → Pattern recognition → Staging and archive awareness.
+Full methodology: [references/AUDIT_PROTOCOL.md](references/AUDIT_PROTOCOL.md)
+
+---
+
+## Mode 2: Architect
+
+Write/maintain the 5-doc system. Always Cartographer before Architect.
+
+### The Five Documents (all in `docs/`)
+Template: [references/UNIVERSAL_TEMPLATE.md](references/UNIVERSAL_TEMPLATE.md)
+
+| File | Purpose | Peak |
+|------|---------|------|
+| INDEX.md | Entry point, quick-start | Always |
+| ARCHITECTURE.md | Technical map, element notes | MVP+ |
+| USER_EXPERIENCE.md | User guides, vision | Creative / Prod+ |
+| PLANNING.md | Backlog, ideas addendum | Seed / MVP |
+| HISTORY.md | Session log + changelog (append-only, newest first) | MVP+ |
+
+### Principles
+Read before write. Update only on meaningful change. Append-only for HISTORY.
+No scattered files → ARCHITECTURE Element Notes. Handover-first. Adaptive depth.
+
+### End-of-Session
+1. HISTORY → log + changelog | 2. PLANNING → backlog + ideas
+3. ARCHITECTURE → element notes | 4. Headers (version, date) in changed files
+5. **PULSE.json → always** | 6. Where other tools share the file, leave DevCom5's signals (see Optional integration)
+
+---
+
+## Mode 3: Scribe
+
+Co-author documents, proposals, specs, and internal comms through
+structured workflows.
+
+### When Scribe Activates
+- "write/draft a proposal/spec/decision doc/RFC/PRD"
+- "write a progress, plans and problems (3P) update / status report / newsletter / FAQ"
+- "help me write [a structured document about the project or its team]"
+- Any substantial writing task about the project
+
+### Scribe Workflow: Co-Authored Documents
+
+For proposals, specs, decision docs, technical docs:
+
+**Stage 1 — Context Gathering:**
+1. Ask meta-context: doc type, audience, desired impact, template/format, constraints
+2. User info-dumps (stream-of-consciousness, links, files — whatever's efficient)
+3. Ask 5-10 clarifying questions based on gaps — first answer what the project, the conversation and the files already say, and ask only the rest
+4. Exit when edge cases and trade-offs can be discussed without needing basics
+
+**Stage 2 — Refinement & Structure:**
+1. Agree on sections (suggest 3-5 based on doc type if user unsure)
+2. Create scaffold with placeholders
+3. Per section: clarify → brainstorm 5-20 options → user curates → draft → iterate
+4. Make targeted edits in place; never reprint the whole doc for a small change
+5. After 3 stable iterations on a section: ask what can be removed
+6. At 80%+ done: full-doc review for flow, redundancy, filler
+
+**Stage 3 — Reader Testing:**
+Predict 5-10 reader questions → test against doc (fresh context, no memory bleed):
+- If sub-agents available: test automatically, report results
+- If not: guide user to test in fresh conversation
+Fix gaps found. Exit when reader questions are answered correctly.
+
+### Scribe Workflow: Internal Communications
+
+For 3P updates, newsletters, FAQs, status reports, incident reports:
+Read [references/COMMS_FORMATS.md](references/COMMS_FORMATS.md) for specific formatting and workflow per type.
+
+**General flow:**
+1. Identify comm type → load format from references
+2. Clarify scope (team, time period, audience)
+3. Gather info (user provides, or pull from available integrations)
+4. Draft in strict format
+5. Review for conciseness and accuracy
+
+### Scribe Principles
+- Direct and procedural, not salesy
+- User has agency to skip stages or go freeform at any point
+- Brainstorming stays in conversation, not artifacts
+- Each iteration should make meaningful improvement
+- Quality over speed
+
+---
+
+## Not DevCom5's Job
+
+| Ask | Where it belongs |
+|-----|-------|
+| Prove a change works, grade its evidence, map what a project can do | a verification tool |
+| What the user knows or has read, outside any one project | a knowledge-search skill |
+| Render the ARCHITECTURE map as a diagram | a diagramming skill |
+| Two copies of the project disagree | a two-copy sync tool |
+| Too many versions or copies of a file | a consolidation tool |
+
+---
+
+## Anti-Patterns
+- Template-stamping empty sections on seed projects
+- One-sentence sections (fold or skip)
+- Ignoring existing READMEs (absorb them)
+- Building a parallel docs set beside the project's own system
+- Rewriting HISTORY (append-only)
+- Silent findings (report drift)
+- PULSE neglect (always update, even quick visits)
+- Rushing Scribe stages (each exists for a reason)
+- Printing entire docs for small edits (edit in place)
+
+---
+
+## Optional integration
+
+DevCom5 needs nothing else. Where other tools share the project's `docs/PULSE.json` (its companions in The Triad, Synk182 and Solid8, or any tool that follows the same protocol), they keep their keys in `cross_skill` (`synk_last_run`, `synk_drift_detected`, `synk_files_changed`, `solid8_last_run`, `solid8_files_consolidated`, `solid8_redundancy_map`) and leave signals in `pending_signals`; DevCom5 reads them and leaves its own. With none of them, nothing waits on these signals. Protocol: [references/TRIFECTA_PROTOCOL.md](references/TRIFECTA_PROTOCOL.md).
+
+**Depth:** `synk_drift_detected: true` → at least Thorough | `pending_signals` not empty → process first, may raise depth | a recent `solid8_last_run` → check ARCHITECTURE element notes
+**Emits:** `drift_detected` → Synk182 | `architecture_changed` → Solid8 | `stale_project` → Both | `docs_created` (when a doc was created this session) → Both
+**Consumes:** `sync_completed` (Synk182) → ≥Standard | `sync_conflict` / `environment_diverged` (Synk182) → flag in audit | `files_consolidated` (Solid8) → update structure | `redundancy_found` (Solid8) → flag in audit | `archive_recommended` (Solid8) → PLANNING
+
+---
+
+*The "5" honors the five-document system at its core.*
