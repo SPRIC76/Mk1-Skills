@@ -1,9 +1,10 @@
-# Publishes a release when a version tag is pushed: each skill as <name>.skill and The Triad as the-triad.zip,
+# Publishes a release when VERSION changes on main (its tag is v<VERSION>): each skill as <name>.skill and The Triad as the-triad.zip,
 # so the downloads can be counted.
 name: release
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+    paths: [VERSION]
 permissions:
   contents: write
 jobs:
@@ -23,4 +24,7 @@ jobs:
       - name: Publish
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/* --title "MK1 skills $GITHUB_REF_NAME" --notes "Released copies. Get them at https://mk1made.us"
+        run: |
+          v="v$(tr -d '[:space:]' < VERSION)"
+          gh release view "$v" >/dev/null 2>&1 && { echo "$v already released"; exit 0; }
+          gh release create "$v" dist/* --target "$GITHUB_SHA" --title "MK1 skills $v" --notes "Released copies. Get them at https://mk1made.us"
