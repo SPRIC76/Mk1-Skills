@@ -2,7 +2,7 @@
 
 Keeps a project self-aware, in sync and lean.
 
-An **agent skill pack**: three skills that keep projects **understood**, **in sync**, and **lean**. Each skill is a self-contained folder in the Agent Skills format (`SKILL.md`, with `references/` and `scripts/` beside it), so it works in any agent that reads `SKILL.md`, and each works installed alone. Installed together, they can share state through a project's `docs/PULSE.json`; that is optional. Formerly *Skills Trifecta*.
+An **agent skill pack**: three skills that keep projects **understood**, **in sync**, and **lean**. Each skill is a self-contained folder in the Agent Skills format (`SKILL.md`, with `references/` and `scripts/` beside it), so it works in any agent that reads `SKILL.md`, and each works installed alone. Installed together, they can share state through a project's `docs/PULSE.json`; that is optional.
 
 | Skill | Alias | Role | Core question |
 |-------|-------|------|----------------|
@@ -111,7 +111,6 @@ Unifies without losing meaning. Archive first.
 - Tier S–D similarity pipeline; three laws (no delete without approval, lossless merge, archive first)
 - Finds version (`_v2`), copy (`- Copy`, `(2)`) and backup (`.bak`, `.old`) sprawl; compares Markdown by section, JSON by structure, binaries by hash; treats archive and staging folders as intentional, and never proposes a merge inside one
 - **Solid8** = solid + ∞ rotated — tames endless project entropy
-- Formerly Denser v1.0
 - Status: `⚗️`
 
 **Not Solid8:** two copies of a project (a two-copy sync tool), vetting or absorbing an outside tool as your own (a tool-vetting workflow), memory notes (a memory-consolidation tool).

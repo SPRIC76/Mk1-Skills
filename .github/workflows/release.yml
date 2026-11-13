@@ -1,4 +1,4 @@
-# Publishes a release when VERSION changes on main (its tag is v<VERSION>): each skill as <name>.skill and The Triad as the-triad.zip,
+# Publishes a release when VERSION changes on main (its tag is v<VERSION>): each skill as <name>.skill, and The Triad and The Proof Pack as the-triad.zip and the-proof-pack.zip,
 # so the downloads can be counted.
 name: release
 on:
@@ -20,7 +20,10 @@ jobs:
           mkdir -p ../stage/the-triad
           cp -r devcom5 synk182 solid8 ../stage/the-triad/
           cp ../bundles/the-triad/README.md ../stage/the-triad/
-          cd ../stage && zip -qrX ../dist/the-triad.zip the-triad
+          mkdir -p ../stage/the-proof-pack
+          cp -r verifox testcatch browsetest ../stage/the-proof-pack/
+          cp ../bundles/the-proof-pack/README.md ../stage/the-proof-pack/
+          cd ../stage && zip -qrX ../dist/the-triad.zip the-triad && zip -qrX ../dist/the-proof-pack.zip the-proof-pack
           ls -l ../dist
       - name: Publish
         env:

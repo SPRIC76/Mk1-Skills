@@ -13,6 +13,10 @@ This repository holds the released copies only, so skill directories and agents 
 | [DevCom5](skills/devcom5/SKILL.md) | What the project knows about itself. |
 | [Synk182](skills/synk182/SKILL.md) | Keeps two copies in agreement. Writes nothing until you approve, and backs up each file first. |
 | [Solid8](skills/solid8/SKILL.md) | Unifies without losing meaning. Archive first. |
+| **The Proof Pack** | Proves the work before anyone calls it done. |
+| [Verifox](skills/verifox/SKILL.md) | Proves your work before you call it done. |
+| [Testcatch](skills/testcatch/SKILL.md) | Writes tests that actually go red when it breaks. |
+| [Browsetest](skills/browsetest/SKILL.md) | Measures the page instead of trusting the screenshot. |
 
 ## License
 
