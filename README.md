@@ -11,6 +11,8 @@ This repository holds the released copies only, so skill directories and agents 
 | [Hillgate](skills/hillgate/SKILL.md) | Proves a change helped before you keep it. |
 | [Routecraft](skills/routecraft/SKILL.md) | Sends each task to the cheapest model that passes. |
 | [Creditrun](skills/creditrun/SKILL.md) | Spends the month's credit, never a cent over. |
+| [Statecraft](skills/statecraft/SKILL.md) | Draws a flow, then proves it can't break. |
+| [Costcatch](skills/costcatch/SKILL.md) | Shows where your agent's money goes. |
 | **The Triad** | Keeps a project self-aware, in sync and lean. |
 | [DevCom5](skills/devcom5/SKILL.md) | What the project knows about itself. |
 | [Synk182](skills/synk182/SKILL.md) | Keeps two copies in agreement. Writes nothing until you approve, and backs up each file first. |
