@@ -6,6 +6,16 @@ This repository holds the released copies only, so skill directories and agents 
 
 Every skill works alone and has its own download. A pack is a set that also comes as one download.
 
+### Start here
+
+| Skill | What it does |
+|-------|--------------|
+| [Skillshaper](skills/skillshaper/SKILL.md) | Gets any skill ready for any agent. |
+| [Promptaudit](skills/promptaudit/SKILL.md) | Finds instructions that went stale. |
+| [Hillgate](skills/hillgate/SKILL.md) | Proves a change helped before you keep it. |
+
+All thirteen, by what they do:
+
 ### Shape the instructions
 
 | Skill | What it does |
@@ -19,7 +29,6 @@ Every skill works alone and has its own download. A pack is a set that also come
 | Skill | What it does |
 |-------|--------------|
 | [Statecraft](skills/statecraft/SKILL.md) | Draws a flow, then proves it can't break. |
-| **The Proof Pack** | Proves the work before anyone calls it done. |
 | [Verifox](skills/verifox/SKILL.md) | Proves your work before you call it done. |
 | [Testcatch](skills/testcatch/SKILL.md) | Writes tests that actually go red when it breaks. |
 | [Browsetest](skills/browsetest/SKILL.md) | Measures the page instead of trusting the screenshot. |
