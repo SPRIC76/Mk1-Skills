@@ -15,7 +15,7 @@ description: >-
   news with no routing decision.
 license: Freeware
 metadata:
-  version: "1.0.0.0"
+  version: "1.0.0.1"
   updated: "2026-11-12"
 ---
 
@@ -175,8 +175,8 @@ carries a certainty, shown beside the route:
 - **Settled**: at least 20 held-out cases x 3 runs per rung, and either the winner's 90%
   Wilson interval of pass rate sits above the other's, or the pass rates tie and a 90%
   bootstrap interval of the cost difference per finished task (resampling cases) leaves
-  out zero in the winner's favour.
-- **Leaning**: the point estimates favour the winner, but the size or that separation is not met.
+  out zero in the winner's favor.
+- **Leaning**: the point estimates favor the winner, but the size or that separation is not met.
 - **Unsettled**: a tie on both measures, too few cases, or a rung with no runs.
 
 The numbers live in `rules` (`settle_cases`, `settle_repeats`, `agreement`, `confidence`);

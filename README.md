@@ -2,7 +2,7 @@
 
 Agent skills by MK1. **Get them at [mk1made.us](https://mk1made.us)**, the home of every release.
 
-This repository holds the released copies only, so skill directories and agents can find them. Each folder under `skills/` is a self-contained skill in the Agent Skills format: a `SKILL.md`, the files it runs, and its licence. Copy one into a skills folder your agent reads, such as `~/.agents/skills/`.
+This repository holds the released copies only, so skill directories and agents can find them. Each folder under `skills/` is a self-contained skill in the Agent Skills format: a `SKILL.md`, the files it runs, and its license. Copy one into a skills folder your agent reads, such as `~/.agents/skills/`.
 
 Every skill works alone and has its own download. A pack is a set that also comes as one download.
 

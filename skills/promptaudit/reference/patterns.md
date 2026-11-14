@@ -8,7 +8,7 @@ Derived from Anthropic's published prompt-audit guidance for current Claude mode
 |---|---|---|
 | Capitalised pressure: CRITICAL, MUST, NEVER many times in one file | Older models under-triggered; current ones over-apply, and when everything is critical nothing is | State the one or two real constraints plainly, with the reason |
 | Hedges on real requirements: "try to", "if possible" | Read literally as permission to under-deliver | Say what is required |
-| Trait claims: "you tend to be verbose" | Describes an older model | State the wanted behaviour |
+| Trait claims: "you tend to be verbose" | Describes an older model | State the wanted behavior |
 | "Be thorough", "do not be lazy", "do not stop early" | Current models are proactive by default | Delete |
 | "Think step by step", scratchpad or thinking tags, "think harder/less" | Native thinking and an effort setting replace them; a "do not think" rule cannot be followed where thinking is always on | Delete; use the effort control |
 | "Plan before acting", "use the think tool to plan" | Causes over-planning on models that plan unprompted | Delete; lower effort if still too aggressive |
@@ -26,7 +26,7 @@ Step-by-step scripts for judgment work (keep numbered steps only where order is 
 
 ## Files that disagree or rot
 
-Two instruction files ruling differently on the same point (a narrower file that explains its own scope, or names what it overrides, is an override, not a conflict; keep it). Named paths, commands or flags that no longer exist (check by reading, never by running). Hard-coded versions, dates, incident ids and history narrated in the file. Rules nothing enforces that could be a permission rule, hook or validator: a behavioural request is weaker than a check. Skill descriptions that only ever grow, one phrase per missed trigger.
+Two instruction files ruling differently on the same point (a narrower file that explains its own scope, or names what it overrides, is an override, not a conflict; keep it). Named paths, commands or flags that no longer exist (check by reading, never by running). Hard-coded versions, dates, incident ids and history narrated in the file. Rules nothing enforces that could be a permission rule, hook or validator: a behavioral request is weaker than a check. Skill descriptions that only ever grow, one phrase per missed trigger.
 
 ## Whole-surface fit
 
@@ -34,7 +34,7 @@ What no single line shows. Copies that drifted from their master and now disagre
 
 ## Tool descriptions
 
-Judge on precision, not brevity. Under-described (vague one-liners, undocumented parameters, no when-not-to-use) gets more text. Over-steered (shouting, worked dialogue, "ALWAYS use X, NEVER Y", follow-up instructions smuggled into a description) gets moved or dialled back. Routing text in a skill's description may carry calibrated urgency; behaviour text should explain.
+Judge on precision, not brevity. Under-described (vague one-liners, undocumented parameters, no when-not-to-use) gets more text. Over-steered (shouting, worked dialogue, "ALWAYS use X, NEVER Y", follow-up instructions smuggled into a description) gets moved or dialled back. Routing text in a skill's description may carry calibrated urgency; behavior text should explain.
 
 ## Keep list
 

@@ -121,7 +121,7 @@ Unifies without losing meaning. Archive first.
 
 ## License
 
-Freeware — each skill folder carries its LICENSE. Copyright (c) 2026 MK1 Enterprise. Free to download and use; please link to mk1made.us rather than rehosting it. Copies released under MIT before this licence keep it.
+Freeware — each skill folder carries its LICENSE. Copyright (c) 2026 MK1 Enterprise. Free to download and use; please link to mk1made.us rather than rehosting it. Copies released under MIT before this license keep it.
 
 ---
 

@@ -436,7 +436,7 @@ def certainty(rules, cur_rows, cand_rows, adopt, quality_decides):
     if quality_decides:
         separated = (lo1 > hi0) if adopt else (lo0 > hi1)
     else:
-        # cost decided with quality held: the cost gap must clear zero in the winner's favour
+        # cost decided with quality held: the cost gap must clear zero in the winner's favor
         separated = (g_lo > 0) if adopt else (g_hi < 0)
     detail = (f"pass {k0}/{n} [{lo0:.2f}-{hi0:.2f}] vs {k1}/{n} [{lo1:.2f}-{hi1:.2f}], "
               f"cost gap [{g_lo:+.4f} to {g_hi:+.4f}], {reps} runs per case")

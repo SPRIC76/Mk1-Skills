@@ -3,7 +3,7 @@ name: promptaudit
 description: >-
   Finds instructions that went stale. Audit the instructions an AI agent loads - CLAUDE.md, AGENTS.md, rule files, skills, subagent and command definitions, system prompts and tool descriptions - for text that no longer fits: written for an older model, contradicting another file, naming files or commands that are gone, or shouting where a plain sentence works. Use when asked to audit, clean up, de-cruft or modernize prompts or agent instructions, to check rules for conflicts, after a model release or migration, or when an agent seems over-cautious, rigid or slow because of its own instructions. Produces a report and a proposed diff; edits only when asked. Not for writing a new prompt, for measuring token cost, or for proving code works.
 metadata:
-  version: "1.0.0.1"
+  version: "1.0.0.2"
   updated: "2026-11-09"
   works-with: any agent that reads SKILL.md; scripts need python 3.9+ and nothing else
 ---
@@ -12,7 +12,7 @@ metadata:
 
 Finds instructions that went stale.
 
-Instruction text goes stale in three ways: it was written for a model that needed it and the current one does not; it disagrees with another instruction file; it describes a project that has moved on. Current models follow instructions closely and literally, so a stale line is not just wasted tokens, it can steer behaviour: over-triggering, over-planning, rigid answers. The audit finds specific lines that no longer fit. Making text shorter is not the goal; every surviving line should earn its place.
+Instruction text goes stale in three ways: it was written for a model that needed it and the current one does not; it disagrees with another instruction file; it describes a project that has moved on. Current models follow instructions closely and literally, so a stale line is not just wasted tokens, it can steer behavior: over-triggering, over-planning, rigid answers. The audit finds specific lines that no longer fit. Making text shorter is not the goal; every surviving line should earn its place.
 
 ## Steps
 
@@ -24,7 +24,7 @@ Instruction text goes stale in three ways: it was written for a model that neede
 5. **Apply the keep list** in `reference/patterns.md` before reporting. Context only the author knows, reasons behind constraints, exact scripts for fragile operations, tool contracts and prohibitions that guard a failure still happening are not cruft, however much a signal matches.
 6. **Report.** One entry per finding: `file:line`, the exact text, which pattern, why it no longer fits the target, confidence (high: documented or contradicted by the repository; medium: widely observed; low: idiom only), and an action: remove, rewrite (give the text), move, add, or flag. Highest confidence first. A clean surface is a valid result: say so in one line and change nothing.
 7. **Proposed diff.** High and medium findings only, one finding per hunk so each can be taken alone. A removal is complete only when everything that referenced it goes too. Apply edits only when the request said to.
-8. **Verify.** A removal is a hypothesis. Before and after, run a small behaviour check on the instruction's purpose (the owner's eval if one exists). One change at a time where stakes are high. If a cut regresses, put back the shortest form, not the original.
+8. **Verify.** A removal is a hypothesis. Before and after, run a small behavior check on the instruction's purpose (the owner's eval if one exists). One change at a time where stakes are high. If a cut regresses, put back the shortest form, not the original.
 
 ## Boundaries
 

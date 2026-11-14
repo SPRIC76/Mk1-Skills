@@ -1,8 +1,8 @@
 [
   {"id": "lookup", "tier": 1, "effort": "low", "description": "Searches, file reads, exploring a codebase or folder, status reads", "check": "the answer cites the file, line or source it came from"},
   {"id": "run-and-read", "tier": 1, "effort": "low", "description": "Tests, benchmarks, measurements, builds: code runs them, a model only reads the result line", "check": "the result line is quoted exactly"},
-  {"id": "narrow-judgment", "tier": 1, "effort": "low", "description": "One yes/no or pick-one call: classify, triage, gate a tool call, route a task", "check": "agreement with a labelled sample"},
-  {"id": "bulk", "tier": 1, "effort": "low", "description": "Labelling, extraction, summaries over many items (use a provider's batch route if it has one)", "check": "spot check of a random sample against labels"},
+  {"id": "narrow-judgment", "tier": 1, "effort": "low", "description": "One yes/no or pick-one call: classify, triage, gate a tool call, route a task", "check": "agreement with a labeled sample"},
+  {"id": "bulk", "tier": 1, "effort": "low", "description": "Labeling, extraction, summaries over many items (use a provider's batch route if it has one)", "check": "spot check of a random sample against labels"},
   {"id": "planning-research", "tier": 3, "effort": "high", "description": "Plans, research reports, comparing options, reading many sources", "check": "every claim graded and sourced; a reviewer finds no missing option the brief named"},
   {"id": "blueprint", "tier": 3, "effort": "high", "description": "The plan, scaffold and acceptance checks written before any code job starts", "check": "each step names its file and its check; the build that follows passes them"},
   {"id": "code-routine", "tier": 2, "effort": "high", "description": "A routine change in known files", "check": "tests, type check and lint pass"},

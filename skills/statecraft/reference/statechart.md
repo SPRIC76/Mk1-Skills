@@ -48,7 +48,7 @@ stateDiagram-v2
 3. **One chart per flow.** A second flow that shares a state gets its own chart that
    repeats that state. Do not grow one chart to cover everything.
 4. **Mark what the code does today,** not what it should do. The fix arrives as a green
-   box beside the red one, reached by an arrow labelled "with the fix".
+   box beside the red one, reached by an arrow labeled "with the fix".
 5. **Under about 25 boxes.** Past that, split the flow, or the picture stops helping.
 
 ## Marking findings
@@ -58,7 +58,7 @@ stateDiagram-v2
 - A fix that the checker passed and a driver confirmed: a `fixed` (green) box beside it.
 - A fix that only the model passed: still green, with "(model only)" in the label until a
   driver confirms it against the real code.
-- Everything else stays `works` (grey). Grey means "not shown broken within the bound", not
+- Everything else stays `works` (gray). Gray means "not shown broken within the bound", not
   "proven".
 
 ## Keeping it true
