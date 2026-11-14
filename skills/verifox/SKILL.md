@@ -4,17 +4,12 @@ description: Verifox - verify your own work empirically before reporting it, usi
 metadata:
   version: "1.0.0.0"
   optional_dependency: a Jev client, not included in this pack, installed beside this folder as jev-client/scripts/jev.py - for --judge and the decision at --record only; everything else runs without it, and those two say by name when it is missing
-  renamed_from: verafox (2026-10-21); verify-before-done before that (2026-09-23)
-  source: its author's stated requirement (2026-09-22, extended 2026-09-23) plus the review records of a web app and KiT; siblings a rendered-page measuring discipline and a tests-that-can-fail discipline
   owner: SPRIC76
   enforcement: load-bearing (this file) + runtime-enforced (scripts/featuremap.py)
 ---
 
 # Verifox — verify before done
 
-Named verify-before-done until 2026-09-23, when it was renamed; that name still says
-what it is for. Verafox from then until 2026-10-21, when it was renamed Verifox; a call
-by either old name means this skill.
 
 An agent reporting on its own work is the least reliable witness available: it knows
 what it intended, which is exactly the thing under test. Verification is the step

@@ -3,7 +3,6 @@ name: statecraft
 description: Statecraft - draw a plain-language statechart of a flow or system (every state and path, bugs marked red, fixes green), then prove its laws with a model checker (TLA+ by default, Kani for Rust) so a race, retry or ordering bug shows up as the exact steps that break it. Use when the user says Statecraft, statechart, state machine, draw the states or flow, TLA+, formal verification, model check, prove it, invariant or laws; when code has concurrency, locks, leases, expiry, retries, idempotency, queues, sync between machines or agents, a multi-step write, or a user flow with many branches (notifications, checkout, sign-in, handoffs); when a bug happens only sometimes or under timing; and before trusting a fix to any of those. Hands each law's result to an evidence-grading step. Not for checking a feature works the way a user meets it (a verification tool), writing tests that can fail (a test-discipline tool), or architecture diagrams (a diagramming tool).
 metadata:
   version: "1.0.0.0"
-  created: "2026-10-21 03:38 ET"
   optional_dependency: "Java 11+ and tla2tools.jar (TLA+ tools v1.7.4, pinned in scripts/check.py) for the model checks; the statechart, the laws and the handoff need neither"
   enforcement: "load-bearing (this file) + runtime-enforced (scripts/check.py refuses to trust a law it never saw break)"
 ---

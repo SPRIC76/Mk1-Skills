@@ -3,8 +3,6 @@ name: browsetest
 description: Browsetest (measure in the browser) - a discipline for verifying visual work (layout, color, contrast, typography, hover placement, theme toggles, and a page's first load frame by frame) by measuring the rendered page instead of reading the stylesheet or judging a screenshot by eye. Use whenever a UI change is about to be reported as done, whenever a screenshot looks wrong or blank, whenever a flex or grid rule seems ignored, whenever a contrast or accessibility floor is claimed, before a third attempt at any color solve, and to play-test any change to what a page's load paints (a flash, a stand-in, a font swap, an empty slot on a first visit). Derived 2026-09-15 from seventy review rounds on a web app; every rule below cost at least one pass.
 metadata:
   version: "1.0.0.0"
-  renamed_from: measure-in-the-browser (2026-10-12)
-  source: derived from the review records of a web app and KiT (2026-09)
   owner: SPRIC76
 ---
 

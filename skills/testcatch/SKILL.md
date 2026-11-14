@@ -3,8 +3,6 @@ name: testcatch
 description: Testcatch - how to write a test, guard or checker rule that will actually go red when the thing it protects is broken, prove it with a re-injection probe, and hold the test floor with floor_guard.py. Use when adding or reviewing any test, lint rule, assertion, safety check or regression case; before writing a test body, to name the break it catches; when an expected value is built by the code under test; when a test passes on the first run with no drama; when a fix turns an existing test red; when a design ruling is reversed; when a check has started failing every time; and before calling a change safe or reviewing any change that touches tests, test config or CI, a helper agent's included - a new skip, noqa or ts-ignore, a test or assertion gone, a tolerance or timeout loosened, a CI step dropped. Not for proving a change works end to end (a verification tool). Derived 2026-09-15 from one project's rule files, where each pattern below let a defect ship under a green run.
 metadata:
   version: "1.0.0.0"
-  renamed_from: rules-that-can-fail (2026-09-30)
-  source: derived from the review record of a real project (2026-09)
   credits: "floor-guard contract (diff scoped, exit 0/1/2, 2 never clean) from addyosmani/agent-skills skills/constraint-driven-development/references/floor-guard.md @ 2686b620fc1fed2e8f60c704839c766b8594c6b6 (MIT); name the break, no mirror assertions and the mutation check from obra/superpowers skills/test-driven-development/writing-good-tests.md @ 8ca22dba9a94f28898bbce59f2537ff4d87c747d (MIT). Rewritten in its author's words and built as original code; no text or code copied."
   owner: SPRIC76
 ---
