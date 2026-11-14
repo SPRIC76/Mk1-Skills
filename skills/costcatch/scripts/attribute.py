@@ -94,3 +94,4 @@ json.dump({"rewrite_causes": {k: [cause_n[k], round(cause_usd[k], 2)] for k, _ i
            "cold_starts": {k: {"n": v[0], "avg_tokens": v[1] // max(v[0], 1), "write_usd": round(v[2], 2)} for k, v in cold.items()}},
           sys.stdout, indent=1)
 print()
+sys.stderr.write("RESULT: %d large rewrites named, $%.2f\n" % (sum(cause_n.values()), sum(cause_usd.values())))

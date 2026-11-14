@@ -50,3 +50,4 @@ for model, u in reqs.values():
         p = tiered(model, p, r["in"] + r["read"] + r["w5"] + r["w1h"])
         usd += (r["in"] * p[0] + r["out"] * p[1] + r["read"] * p[2] + r["w5"] * p[0] * 1.25 + r["w1h"] * p[0] * 2) / 1e6
 print(json.dumps({"requests": len(reqs), "tokens": tot, "usd": round(usd, 2), "peak_context": peak, "compactions": comp}))
+sys.stderr.write("RESULT: %d requests, list-price cost $%.2f\n" % (len(reqs), usd))
