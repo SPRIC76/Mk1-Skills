@@ -1,6 +1,14 @@
 # Communications Formats Reference
 <!-- DevCom5 v1.3 | 2026-02-10 | Scribe mode reference -->
 
+## Contents
+- Progress, Plans and Problems (3P) Updates
+- Company Newsletter
+- FAQ Compilations
+- Status Reports / Project Updates
+- Incident Reports
+- General Internal Communications
+
 Scribe mode uses these formats for internal communications.
 
 ---

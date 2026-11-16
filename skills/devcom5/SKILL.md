@@ -17,8 +17,8 @@ description: >-
   knowledge-search skill), or rendering diagrams (a diagramming skill).
 license: Freeware
 metadata:
-  version: "1.3"
-  updated: "2026-09-30"
+  version: "1.4"
+  updated: "2026-11-16"
 ---
 
 # DevCom5 — Developer Communications · 5
@@ -54,18 +54,18 @@ Tracked via `docs/PULSE.json`. Read first, write last, every interaction.
   "pulse_version": "3.0",
   "classification": { "domain": "software", "maturity": "mvp", "complexity": "solo" },
   "heartbeat": {
-    "last_seen": "ISO-8601-ET", "last_depth": "standard",
+    "last_seen": "ISO-8601 with offset", "last_depth": "standard",
     "last_mode": "cartographer|architect|scribe",
     "last_context": "Brief summary", "session_count": 5
   },
   "health": {
     "docs_exist": [], "docs_missing": [], "docs_stale": [],
-    "drift_flags": [], "last_audit": "ISO-8601-ET"
+    "drift_flags": [], "last_audit": "ISO-8601 with offset"
   },
   "cross_skill": { "pending_signals": [] },
   "digest_history": [
     {
-      "timestamp": "ISO-8601-ET", "depth_requested": "deep",
+      "timestamp": "ISO-8601 with offset", "depth_requested": "deep",
       "depth_actual": "standard", "reason": "mid-scan downshift: no changes detected",
       "summary": "Brief findings", "recommended_next": "action"
     }

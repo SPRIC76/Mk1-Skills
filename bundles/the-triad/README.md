@@ -10,7 +10,7 @@ An **agent skill pack**: three skills that keep projects **understood**, **in sy
 | **Synk182** | Symphonous Strategist | Agreement between two copies | Are the copies in agreement? |
 | **Solid8** | Denser / Shrinksmith | Consolidation | What can be unified without losing meaning? |
 
-**Versions:** DevCom5 1.3 · Synk182 3.3 · Solid8 1.3 · Trifecta Protocol 3.0.
+**Versions:** DevCom5 1.4 · Synk182 3.4 · Solid8 1.4 · Trifecta Protocol 3.0.
 
 Optional protocol for shared state: each skill's `references/TRIFECTA_PROTOCOL.md`
 

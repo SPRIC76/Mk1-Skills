@@ -16,9 +16,10 @@ description: >-
   tool as your own (a tool-vetting workflow), or memory notes (a
   memory-consolidation tool).
 license: Freeware
+compatibility: Python 3.10 or later (standard library only) to run the bundled engine; the workflow itself needs no script.
 metadata:
-  version: "1.3"
-  updated: "2026-09-30"
+  version: "1.4"
+  updated: "2026-11-16"
 ---
 
 # Solid8 — The 'Shrinksmith' Alchemist 
@@ -144,10 +145,12 @@ python scripts/denser_engine.py <target_dir> --json proposal.json  # full propos
 python scripts/denser_engine.py <target_dir> --pulse               # record the scan in docs/PULSE.json
 ```
 
-- `DenserEngine(target).scan()` → `.compare_all()` → `.generate_proposal()`; `.create_archive(files, archive_dir, reason)` copies originals with `manifest.json` and `rollback.md` before any merge or removal, and refuses (`LinkRefused`) when the archive folder, or a folder on the way to it or to an original under the target, is a junction or link, asked just before each original is read and each archive file is written; an archive folder outside the target is refused when it, or any folder above it, is one. That includes a folder under a system folder that is itself a link (on macOS, `/tmp` and `/var` are), so pass such a folder's resolved path. Before anything is made, a path that is absolute, holds `..` or lies outside the target raises `ValueError`, and a missing original `FileNotFoundError`.
-- Skips `.git`, `node_modules`, build output, caches, and every dot-prefixed folder or file; groups candidates by hash, by base name (version, copy and backup markers removed) within a folder, and by size, and pairs a version, copy or backup name with its base name in any other folder. A copy number has one to three digits, so `(2024)` is a year, not a copy. A junction or link inside the target, to a folder or a file, is named and never followed, so a loop cannot repeat files (a dangling one is named as such). A folder that cannot be listed or a file that cannot be read is named with the reason (`unreadable: N`, then each), never fingerprinted as empty; a file that becomes unreadable between the scan and the compare is named the same way, and its pairs get no tier. Each candidate file is read once per run, so a folder of hundreds of same-size files compares in seconds.
-- A `--json` file that cannot be written (a missing folder, or a folder in its place), or an empty `--json` name, is answered with the reason and exit 1, after the report; a `--pulse` beside it still records the scan. `--details` takes a count of 0 or more. The proposal caps each cluster's comparisons at 50 (`comparisons_cap`; a near-duplicate cluster of hundreds of files would otherwise write tens of thousands), and a capped cluster says how many were left out (`comparisons_total`, `comparisons_left_out`); on the terminal, `--json` says how many were left out in all, and each cluster `--details` shows lists its first five comparisons and how many more it holds; `--pulse`'s map is capped the same way. Everything the engine writes (the proposal, the archive's files, `docs/PULSE.json`) is LF on every platform.
-- `--pulse` writes `solid8_last_run` and `solid8_redundancy_map`, leaves a `redundancy_found` signal when anything is found, keeps every other key, and never touches a PULSE that does not parse or holds no JSON object, and says so; a PULSE saved with a UTF-8 BOM is read. A consumed signal (JSON `true`) older than seven days is pruned, one whose timestamp the protocol's grammar cannot read is pruned with a note, and an unconsumed one is never touched. A wrong-typed field (`"pending_signals": null`) is treated as empty with a note; when no PULSE exists one is created holding only `cross_skill`. When `docs` is a file, `docs` or `PULSE.json` is a junction or link, or the PULSE cannot be written, the scan still reports and says the PULSE was not written.
+- **From Python:** `DenserEngine(target).scan()` → `.compare_all()` → `.generate_proposal()`; `.create_archive(files, archive_dir, reason)` copies originals with `manifest.json` and `rollback.md` before any merge or removal, and refuses a junction or link on the way (`LinkRefused`).
+- **The scan** skips `.git`, `node_modules`, build output, caches and every dot-prefixed folder or file, never follows a junction or link, and names what it could not read rather than reading it as empty.
+- **`--json`** writes the full proposal; each cluster's comparisons are capped at 50 and the number left out is named. `--details` takes a count of 0 or more.
+- **`--pulse`** records the scan in `docs/PULSE.json`, keeping every other key, and never touches a PULSE that does not parse. Everything the engine writes is LF on every platform.
+
+Every edge case, word for word: [references/ENGINE.md](references/ENGINE.md). Read it before archiving by hand or when the engine refuses a path.
 
 The SKILL.md methodology applies whether using the engine or manual analysis.
 

@@ -1,6 +1,14 @@
 # Universal Document Template
 <!-- DevCom5 v1.3 | 2026-02-10 | Architect mode reference -->
 
+## Contents
+- INDEX.md: entry point and quick start
+- ARCHITECTURE.md: technical map and element notes
+- USER_EXPERIENCE.md: user guides and vision
+- PLANNING.md: backlog and ideas addendum
+- HISTORY.md: session log and changelog
+- Maturity-Based Selection: which documents a project needs at its stage
+
 Templates for the five-document system. Adapt to classification.
 Never template-stamp — use only sections appropriate to project maturity.
 
