@@ -6,7 +6,7 @@ Derived from Anthropic's published prompt-audit guidance for current Claude mode
 
 | Pattern | Why it no longer fits | Fix |
 |---|---|---|
-| Capitalised pressure: CRITICAL, MUST, NEVER many times in one file | Older models under-triggered; current ones over-apply, and when everything is critical nothing is | State the one or two real constraints plainly, with the reason |
+| Capitalized pressure: CRITICAL, MUST, NEVER many times in one file | Older models under-triggered; current ones over-apply, and when everything is critical nothing is | State the one or two real constraints plainly, with the reason |
 | Hedges on real requirements: "try to", "if possible" | Read literally as permission to under-deliver | Say what is required |
 | Trait claims: "you tend to be verbose" | Describes an older model | State the wanted behavior |
 | "Be thorough", "do not be lazy", "do not stop early" | Current models are proactive by default | Delete |
@@ -34,7 +34,7 @@ What no single line shows. Copies that drifted from their master and now disagre
 
 ## Tool descriptions
 
-Judge on precision, not brevity. Under-described (vague one-liners, undocumented parameters, no when-not-to-use) gets more text. Over-steered (shouting, worked dialogue, "ALWAYS use X, NEVER Y", follow-up instructions smuggled into a description) gets moved or dialled back. Routing text in a skill's description may carry calibrated urgency; behavior text should explain.
+Judge on precision, not brevity. Under-described (vague one-liners, undocumented parameters, no when-not-to-use) gets more text. Over-steered (shouting, worked dialogue, "ALWAYS use X, NEVER Y", follow-up instructions smuggled into a description) gets moved or dialed back. Routing text in a skill's description may carry calibrated urgency; behavior text should explain.
 
 ## Keep list
 

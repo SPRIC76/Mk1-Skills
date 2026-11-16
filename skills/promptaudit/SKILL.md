@@ -3,7 +3,7 @@ name: promptaudit
 description: >-
   Finds instructions that went stale. Audit the instructions an AI agent loads - CLAUDE.md, AGENTS.md, rule files, skills, subagent and command definitions, system prompts and tool descriptions - for text that no longer fits: written for an older model, contradicting another file, naming files or commands that are gone, or shouting where a plain sentence works. Use when asked to audit, clean up, de-cruft or modernize prompts or agent instructions, to check rules for conflicts, after a model release or migration, or when an agent seems over-cautious, rigid or slow because of its own instructions. Produces a report and a proposed diff; edits only when asked. Not for writing a new prompt, for measuring token cost, or for proving code works.
 metadata:
-  version: "1.0.0.2"
+  version: "1.0.0.3"
   updated: "2026-11-09"
   works-with: any agent that reads SKILL.md; scripts need python 3.9+ and nothing else
 ---
