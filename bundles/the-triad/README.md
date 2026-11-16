@@ -1,6 +1,6 @@
 # The Triad — DevCom5, Synk182, Solid8
 
-Keeps a project self-aware, in sync and lean.
+Clears up duplicate copies without losing a word. Nothing changes until you say yes.
 
 An **agent skill pack**: three skills that keep projects **understood**, **in sync**, and **lean**. Each skill is a self-contained folder in the Agent Skills format (`SKILL.md`, with `references/` and `scripts/` beside it), so it works in any agent that reads `SKILL.md`, and each works installed alone. Installed together, they can share state through a project's `docs/PULSE.json`; that is optional.
 

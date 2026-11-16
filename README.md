@@ -37,7 +37,7 @@ All thirteen, by what they do:
 
 | Skill | What it does |
 |-------|--------------|
-| **The Triad** | Keeps a project self-aware, in sync and lean. |
+| **The Triad** | Clears up duplicate copies without losing a word. Nothing changes until you say yes. |
 | [DevCom5](skills/devcom5/SKILL.md) | What the project knows about itself. |
 | [Synk182](skills/synk182/SKILL.md) | Keeps two copies in agreement. Writes nothing until you approve, and backs up each file first. |
 | [Solid8](skills/solid8/SKILL.md) | Unifies without losing meaning. Archive first. |
