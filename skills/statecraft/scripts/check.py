@@ -52,6 +52,37 @@ def find_jar(given):
     return None
 
 
+def java_roots():
+    """The folders a JDK usually installs under, per system, for a Java that is not on PATH."""
+    if os.name == "nt":
+        bases = [os.environ.get(k) for k in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA")]
+        subs = ("Java", "Eclipse Adoptium", "Microsoft", "Zulu", "Amazon Corretto", os.path.join("Android", "openjdk"),
+                os.path.join("Programs", "Eclipse Adoptium"))
+        return [os.path.join(b, s) for b in bases if b for s in subs]
+    return ["/usr/lib/jvm", "/Library/Java/JavaVirtualMachines", os.path.expanduser("~/.sdkman/candidates/java"),
+            "/opt/homebrew/opt/openjdk", "/usr/local/opt/openjdk"]
+
+
+def find_java(which=shutil.which, env=None, roots=None):
+    """Java on PATH, else under JAVA_HOME, else the newest-named JDK in a usual install folder. None when there is none."""
+    env = os.environ if env is None else env
+    exe = "java.exe" if os.name == "nt" else "java"
+    hit = which("java")
+    if hit:
+        return hit
+    homes = [env.get("JAVA_HOME")] if env.get("JAVA_HOME") else []
+    for root in (java_roots() if roots is None else roots):
+        if os.path.isdir(root):
+            homes.append(root)
+            for d in sorted(os.listdir(root), reverse=True):
+                homes += [os.path.join(root, d), os.path.join(root, d, "Contents", "Home")]
+    for h in homes:
+        p = os.path.join(h, "bin", exe)
+        if os.path.isfile(p):
+            return p
+    return None
+
+
 def read_cfg(path):
     head, laws = {}, []
     with open(path, encoding="utf-8") as f:
@@ -88,11 +119,11 @@ def parse(out):
     return "ERROR", None, [], None, None
 
 
-def run_one(jar, folder, cfg, spec, timeout):
+def run_one(java, jar, folder, cfg, spec, timeout):
     with tempfile.TemporaryDirectory() as tmp:
         work = os.path.join(tmp, "m")
         shutil.copytree(folder, work)
-        cmd = ["java", "-XX:+UseParallelGC", "-cp", jar, "tlc2.TLC", "-config", cfg,
+        cmd = [java, "-XX:+UseParallelGC", "-cp", jar, "tlc2.TLC", "-config", cfg,
                "-workers", "auto", "-deadlock", "-metadir", os.path.join(tmp, "meta"), spec]
         try:
             p = subprocess.run(cmd, cwd=work, capture_output=True, text=True, timeout=timeout)
@@ -122,12 +153,16 @@ def main(argv=None):
     cfgs = sorted(f for f in os.listdir(a.folder) if f.endswith(".cfg"))
     if not cfgs:
         return done(2, "no .cfg in %s; each check is one .cfg" % a.folder)
-    if not shutil.which("java"):
-        return done(2, "no Java on PATH; TLC needs Java 11 or later")
-    jar = find_jar(a.jar)
+    java, jar = find_java(), find_jar(a.jar)
     if not jar:
         print("No tla2tools.jar. Get the pinned one once, outside any project:\n  " + GET)
-        return done(2, "no tla2tools.jar (--jar, TLA2TOOLS_JAR, or ~/.agents/tools/tla2tools.jar)")
+    if not java:
+        print("No Java found on PATH, under JAVA_HOME or in the usual install folders. TLC needs Java 11 or later.")
+    if not jar:
+        return done(2, "no tla2tools.jar (--jar, TLA2TOOLS_JAR, or ~/.agents/tools/tla2tools.jar)%s"
+                    % ("" if java else ", and no Java"))
+    if not java:
+        return done(2, "no Java; TLC needs Java 11 or later")
 
     rows, seen_red, held, mismatch, errors = [], set(), {}, [], []
     for cfg in cfgs:
@@ -141,7 +176,7 @@ def main(argv=None):
             errors.append(cfg)
             print("%s: ERROR - its spec %s is not in the folder" % (cfg, spec))
             continue
-        verdict, law, steps, states, depth, tail = run_one(jar, a.folder, cfg, spec, a.timeout)
+        verdict, law, steps, states, depth, tail = run_one(java, jar, a.folder, cfg, spec, a.timeout)
         row = {"check": cfg, "why": head.get("why", ""), "expect": expect, "verdict": verdict,
                "laws": laws, "broken_law": law, "steps": steps, "states": states, "depth": depth}
         rows.append(row)
